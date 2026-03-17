@@ -40,6 +40,8 @@ public class Student
 
     @Override
     public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Student)) return false;
         Student s = (Student) o;
         return Objects.equals(numarMatricol, s.numarMatricol) &&
                 Objects.equals(prenume, s.prenume) &&
