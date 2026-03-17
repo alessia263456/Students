@@ -19,30 +19,30 @@ public class Application {
         System.out.println(s4);
         System.out.println(s5);
 
-        List<Student> lista = new ArrayList<Student>();
-        lista.add(s1);
-        lista.add(s2);
-        lista.add(s3);
-        lista.add(s4);
-        lista.add(s5);
+        List<Student> lista_studenti = new ArrayList<Student>();
+        lista_studenti.add(s1);
+        lista_studenti.add(s2);
+        lista_studenti.add(s3);
+        lista_studenti.add(s4);
+        lista_studenti.add(s5);
 
         System.out.println("lista:");
-        for(Student s: lista)
+        for(Student s: lista_studenti)
             System.out.println(s);
 
         //tema casa
-        Set<Student> set_studenti = new HashSet<>(lista);
+        Set<Student> set_studenti = new HashSet<>(lista_studenti);
 
         System.out.println("//lista");
 
         Student s6=new Student(120, "Alis", "Popa", "TI21/2");
-        if(lista.contains(s6))
+        if(lista_studenti.contains(s6))
             System.out.println(s6 + " este in lista");
         else
             System.out.println(s6 + " nu este in lista");
 
         Student s7=new Student(112, "Maria", "Popa", "TI21/1");
-        if(lista.contains(s7))
+        if(lista_studenti.contains(s7))
             System.out.println(s7 + " este in lista");
         else
             System.out.println(s7 + " nu este in lista");
