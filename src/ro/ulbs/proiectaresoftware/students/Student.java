@@ -35,19 +35,16 @@ public class Student
     @Override
     public String toString()
     {
-        return String.format("%15d %15s %15s %15s",
-                numarMatricol, prenume, nume, formatieDeStudiu);
+        return String.format("%15d %15s %15s %15s", numarMatricol, prenume, nume, formatieDeStudiu);
     }
 
     @Override
     public boolean equals(Object o) {
-            if (this == o) return true;
-            if (!(o instanceof Student)) return false;
-            Student s = (Student) o;
-            return Objects.equals(numarMatricol, s.numarMatricol) &&
-                    Objects.equals(prenume, s.prenume) &&
-                    Objects.equals(nume, s.nume) &&
-                    Objects.equals(formatieDeStudiu, s.formatieDeStudiu);
+        Student s = (Student) o;
+        return Objects.equals(numarMatricol, s.numarMatricol) &&
+                Objects.equals(prenume, s.prenume) &&
+                Objects.equals(nume, s.nume) &&
+                Objects.equals(formatieDeStudiu, s.formatieDeStudiu);
     }
 
     @Override

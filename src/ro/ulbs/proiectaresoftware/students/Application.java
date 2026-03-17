@@ -27,8 +27,7 @@ public class Application {
         Student s4 = new Student(122, "Mihai", "Vecerdea", "TI22/1");
         Student s5 = new Student(122, "Eugen", "Uritescu", "TI22/2");
 
-        System.out.printf("%15s %15s %15s %15s\n",
-                "numar matricol", "prenume", "nume", "formatie de studiu");
+        System.out.printf("%15s %15s %15s %15s\n", "numar matricol", "prenume", "nume", "formatie de studiu");
         System.out.println(s1);
         System.out.println(s2);
         System.out.println(s3);
@@ -49,11 +48,13 @@ public class Application {
         Set<Student> set_studenti = new HashSet<>(lista);
 
         System.out.println("//lista");
+
         Student s6=new Student(120, "Alis", "Popa", "TI21/2");
         if(gaseste(lista,s6))
             System.out.println(s6 + " este in lista");
         else
             System.out.println(s6 + " nu este in lista");
+
         Student s7=new Student(112, "Maria", "Popa", "TI21/1");
         if(gaseste(lista,s7))
             System.out.println(s7 + " este in lista");
@@ -61,11 +62,11 @@ public class Application {
             System.out.println(s7 + " nu este in lista");
 
         System.out.println("//set");
+
         if(gaseste(set_studenti,s6))
             System.out.println(s6 + " este in lista");
         else
             System.out.println(s6 + " nu este in lista");
-
 
         if(gaseste(set_studenti,s7))
             System.out.println(s7 + " este in lista");
