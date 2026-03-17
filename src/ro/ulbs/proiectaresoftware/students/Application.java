@@ -40,6 +40,7 @@ public class Application {
         lista.add(s3);
         lista.add(s4);
         lista.add(s5);
+
         System.out.println("lista:");
         for(Student s: lista)
             System.out.println(s);
