@@ -1,63 +1,81 @@
 package ro.ulbs.proiectaresoftware.students;
 
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.util.*;
 
 public class Application {
 
-    public void main()
+    public static Student split_student(String text)
     {
-        Student s1 = new Student(112, "Ioan", "Popa", "TI21/1");
-        Student s2 = new Student(112, "Maria", "Oprea", "TI21/1");
-        Student s3 = new Student(120, "Alis", "Popa", "TI21/2");
-        Student s4 = new Student(122, "Mihai", "Vecerdea", "TI22/1");
-        Student s5 = new Student(122, "Eugen", "Uritescu", "TI22/2");
+        String[] split = text.split(",");
+        int nr_matricol;
+        String nume, prenume, formatie;
+        nr_matricol = Integer.parseInt(split[0]);
+        prenume = split[1];
+        nume = split[2];
+        formatie = split[3];
+        return new Student(nr_matricol, prenume, nume, formatie);
+    }
 
-        System.out.printf("%15s %15s %15s %15s\n", "numar matricol", "prenume", "nume", "formatie de studiu");
-        System.out.println(s1);
-        System.out.println(s2);
-        System.out.println(s3);
-        System.out.println(s4);
-        System.out.println(s5);
+    public static void Citire_Fisier(List<Student> lista, String FileName)
+    {
+        String text_citit = "";
+        try
+        {
+            Path path= Paths.get(FileName);
+            try(Scanner sc=new Scanner(path))
+            {
+                while (sc.hasNextLine())
+                {
+                    text_citit=sc.nextLine();
+                    lista.add(split_student(text_citit));
+                }
+            }
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+    }
 
-        List<Student> lista_studenti = new ArrayList<Student>();
-        lista_studenti.add(s1);
-        lista_studenti.add(s2);
-        lista_studenti.add(s3);
-        lista_studenti.add(s4);
-        lista_studenti.add(s5);
-
-        System.out.println("lista:");
-        for(Student s: lista_studenti)
+    public static void Afisare_lista(List<Student> lista)
+    {
+        for(Student s: lista)
+        {
             System.out.println(s);
+        }
+    }
 
-        //tema casa
-        Set<Student> set_studenti = new HashSet<>(lista_studenti);
+    public static void Scriere_fisier(List<Student> lista, String FileName) throws IOException
+    {
+        Path path= Paths.get(FileName);
+        try(BufferedWriter writer=Files.newBufferedWriter(path))
+        {
+           for(Student s: lista)
+           {
+               writer.write(s.toString());
+               writer.newLine();
+           }
+        }
 
-        System.out.println("//lista");
+    }
 
-        Student s6=new Student(120, "Alis", "Popa", "TI21/2");
-        if(lista_studenti.contains(s6))
-            System.out.println(s6 + " este in lista");
-        else
-            System.out.println(s6 + " nu este in lista");
-
-        Student s7=new Student(112, "Maria", "Popa", "TI21/1");
-        if(lista_studenti.contains(s7))
-            System.out.println(s7 + " este in lista");
-        else
-            System.out.println(s7 + " nu este in lista");
-
-        System.out.println("//set");
-
-        if(set_studenti.contains(s6))
-            System.out.println(s6 + " este in lista");
-        else
-            System.out.println(s6 + " nu este in lista");
-
-        if(set_studenti.contains(s7))
-            System.out.println(s7 + " este in lista");
-        else
-            System.out.println(s7 + " nu este in lista");
-
+    public static void main() {
+        List<Student> lista_studenti = new ArrayList<>();
+        Citire_Fisier(lista_studenti,"studenti_in.txt");
+        Afisare_lista(lista_studenti);
+        Collections.sort(lista_studenti);
+        try
+        {
+            Scriere_fisier(lista_studenti, "studenti_out.txt");
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

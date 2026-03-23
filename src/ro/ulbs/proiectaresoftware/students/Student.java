@@ -2,7 +2,7 @@ package ro.ulbs.proiectaresoftware.students;
 
 import java.util.Objects;
 
-public class Student
+public class Student implements Comparable
 {
     private Integer numarMatricol;
     private String prenume, nume, formatieDeStudiu;
@@ -52,5 +52,11 @@ public class Student
     @Override
     public int hashCode() {
         return Objects.hash(numarMatricol, prenume, nume, formatieDeStudiu);
+    }
+
+
+    @Override
+    public int compareTo(Object o) {
+        return nume.compareTo(((Student)o).nume);
     }
 }
