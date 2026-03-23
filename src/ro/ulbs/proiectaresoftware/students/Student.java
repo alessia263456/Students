@@ -54,7 +54,6 @@ public class Student implements Comparable
         return Objects.hash(numarMatricol, prenume, nume, formatieDeStudiu);
     }
 
-
     @Override
     public int compareTo(Object o) {
         return nume.compareTo(((Student)o).nume);
