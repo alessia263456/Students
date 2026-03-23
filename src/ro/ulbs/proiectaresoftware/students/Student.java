@@ -2,7 +2,7 @@ package ro.ulbs.proiectaresoftware.students;
 
 import java.util.Objects;
 
-public class Student implements Comparable
+public class Student implements Comparable<Student>
 {
     private Integer numarMatricol;
     private String prenume, nume, formatieDeStudiu;
@@ -55,7 +55,14 @@ public class Student implements Comparable
     }
 
     @Override
-    public int compareTo(Object o) {
-        return nume.compareTo(((Student)o).nume);
+    public int compareTo(Student s) {
+        if(formatieDeStudiu.equals(s.getFormatieDeStudiu()))
+        {
+            return nume.compareTo(s.getNume());
+        }
+        else
+        {
+            return formatieDeStudiu.compareTo(s.getFormatieDeStudiu());
+        }
     }
 }
