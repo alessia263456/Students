@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.nio.file.StandardOpenOption;
 import java.util.*;
 
 public class Application {
@@ -69,10 +68,26 @@ public class Application {
         List<Student> lista_studenti = new ArrayList<>();
         Citire_Fisier(lista_studenti,"studenti_in.txt");
         Afisare_lista(lista_studenti);
-        Collections.sort(lista_studenti);
+        Collections.sort(lista_studenti,
+                new Comparator<Student>()
+                {
+                    public int compare(Student s1, Student s2)
+                    {
+                        return s1.getNume().compareTo((s2.getNume()));
+                    }
+                });
         try
         {
             Scriere_fisier(lista_studenti, "studenti_out.txt");
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        Collections.sort(lista_studenti);
+        try
+        {
+            Scriere_fisier(lista_studenti, "studenti_out_sorted.txt");
         }
         catch (IOException e) {
             e.printStackTrace();
