@@ -84,6 +84,7 @@ public class Application {
             e.printStackTrace();
         }
 
+
         Collections.sort(lista_studenti);
         try
         {
